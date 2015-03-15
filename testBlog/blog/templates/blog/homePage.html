@@ -1,0 +1,32 @@
+{% extends "blog/index.html" %}
+{% block title%}首页{% endblock %}
+{% block content %}
+<div class="container">
+ <div class="blog-header">
+ <h1 class="blog-title">博客标题</h1>
+ <p class="lead blog-description">博客描述</p>
+ </div>
+<div class="row">
+<div class="col-sm-8 blog-main">
+{% for list in articleList  %}
+ <div class="blog-post"> 
+   <h2 class="blog-post-title">{{list.title}}</h1>
+   <p class="blog-post-meta">Time:{{list.publish_time|date:'Y M d'}}</p>
+   <p>{{list.content|truncatewords:50}} </p> 
+   <p><a class="btn btn-primary" href="{% url 'article' list.id%}">阅读全文</a></p>
+ </div>
+{% endfor %}
+</div>
+</div>
+</div>
+<div>
+ <ul class="pager">
+  {% if articleList.has_previous %}
+   <li><a href="?page={{articleList.previous_page_number}}">上一页</a></li>
+  {% endif %}
+  {% if articleList.has_next %}
+   <li><a href="?page={{articleList.next_page_number}}">下一页</a></li>
+ </ul>
+  {% endif %}
+</div>
+{% endblock %}

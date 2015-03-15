@@ -1,0 +1,35 @@
+<html>
+<head>
+ <title>{% block title %}{% endblock %}</title>
+ <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+ <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/jquery/2.0.0/jquery.min.js"></script>
+ <script src="http://apps.bdimg.com/libs/boostrap/3.0.0/js/bootstrap.min.js"></script>
+ <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+ <script>
+  $(document).ready(function(){
+   $("#login").click(function(){
+    document.location.href="/admin/";
+   });
+  });
+  </script>
+</head>
+ <body>
+  <nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header ">
+   <a class="navbar-brand" href="{% url 'homePage' %}">首页</a>
+  </div>
+  <div>
+   <ul class="nav navbar-nav">
+    <li><a href="{% url 'articleList'%}">文章列表</a></li>
+    <li><a href="#">订阅</a></li>
+    <li><a href="#">关于</a></li> 
+   </ul>
+  </div> 
+
+  <button id="login" class="btn btn-primary navbar-btn">登录</button>
+
+  </nav>
+  {% block content %}
+  {% endblock %}
+ </body>
+</html>
