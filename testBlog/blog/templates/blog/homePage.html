@@ -16,9 +16,6 @@
    <p><a class="btn btn-primary" href="{% url 'article' list.id%}">阅读全文</a></p>
  </div>
 {% endfor %}
-</div>
-</div>
-</div>
 <div>
  <ul class="pager">
   {% if articleList.has_previous %}
@@ -26,7 +23,18 @@
   {% endif %}
   {% if articleList.has_next %}
    <li><a href="?page={{articleList.next_page_number}}">下一页</a></li>
- </ul>
   {% endif %}
+ </ul> 
 </div>
+</div>
+<div class="col-sm-3 sidebar-module">
+ <div>
+  <h4>关于</h4>
+  <p>about info</p>
+  <p>about info</P>
+ </div>
+
+</div>
+</div>
+
 {% endblock %}
