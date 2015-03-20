@@ -12,13 +12,14 @@ def homePage(request):
   raise Http404
  paginator=Paginator(articleList,3)
  page=request.GET.get('page')
+ numPages=range(1,paginator.num_pages+1)
  try:
   articleList=paginator.page(page)
  except PageNotAnInteger:
   articleList=paginator.page(1)
  except EmptyPage:
-  articleList=paginator.page(paginator.num_pages)
- return render(request,'blog/homePage.html',{'articleList':articleList})
+  articleList=paginator.page(numPages)
+ return render(request,'blog/homePage.html',{'articleList':articleList,'numPages':numPages})
 
 def articleList(request):
  try:

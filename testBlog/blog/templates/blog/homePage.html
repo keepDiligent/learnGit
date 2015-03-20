@@ -16,11 +16,14 @@
    <p><a class="btn btn-primary" href="{% url 'article' list.id%}">阅读全文</a></p>
  </div>
 {% endfor %}
-<div>
- <ul class="pager">
+	<div>
+	 <ul class="pager">
   {% if articleList.has_previous %}
    <li><a href="?page={{articleList.previous_page_number}}">上一页</a></li>
   {% endif %}
+  {% for pageNum in numPages %}
+  <li> <a href="?page={{pageNum}}">{{pageNum}}</a></li>
+  {% endfor %}
   {% if articleList.has_next %}
    <li><a href="?page={{articleList.next_page_number}}">下一页</a></li>
   {% endif %}
