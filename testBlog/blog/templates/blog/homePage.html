@@ -11,7 +11,7 @@
 {% for list in articleList  %}
  <div class="blog-post"> 
    <h2 class="blog-post-title">{{list.title}}</h1>
-   <p class="blog-post-meta">Time:{{list.publish_time|date:'Y M d'}}</p>
+   <p class="blog-post-meta">Time:{{list.publish_time|date:'Y-m-d H:i:s'}}</p>
    <p>{{list.content|truncatewords:50}} </p> 
    <p><a class="btn btn-primary" href="{% url 'article' list.id%}">阅读全文</a></p>
  </div>
@@ -36,8 +36,5 @@
   <p>about info</p>
   <p>about info</P>
  </div>
-
-</div>
-</div>
 
 {% endblock %}
