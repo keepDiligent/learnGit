@@ -21,12 +21,14 @@ def homePage(request):
   articleList=paginator.page(numPages)
  return render(request,'blog/homePage.html',{'articleList':articleList,'numPages':numPages})
 
+
 def articleList(request):
  try:
   articleList = Article.objects.all().order_by('-publish_time')
  except ArticleDoesNotExists:
   raise Http404
  return render(request,'blog/catalog.html',{'articleList':articleList})
+ 
  
 def article(request,id):
  try:

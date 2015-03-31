@@ -3,38 +3,58 @@
 {% block content %}
 <div class="container">
  <div class="blog-header">
- <h1 class="blog-title">博客标题</h1>
- <p class="lead blog-description">博客描述</p>
- </div>
-<div class="row">
-<div class="col-sm-8 blog-main">
-{% for list in articleList  %}
- <div class="blog-post"> 
-   <h2 class="blog-post-title">{{list.title}}</h1>
-   <p class="blog-post-meta">Time:{{list.publish_time|date:'Y-m-d H:i:s'}}</p>
-   <p>{{list.content|truncatewords:50}} </p> 
-   <p><a class="btn btn-primary" href="{% url 'article' list.id%}">阅读全文</a></p>
- </div>
-{% endfor %}
-	<div>
-	 <ul class="pager">
-  {% if articleList.has_previous %}
-   <li><a href="?page={{articleList.previous_page_number}}">上一页</a></li>
-  {% endif %}
-  {% for pageNum in numPages %}
-  <li> <a href="?page={{pageNum}}">{{pageNum}}</a></li>
-  {% endfor %}
-  {% if articleList.has_next %}
-   <li><a href="?page={{articleList.next_page_number}}">下一页</a></li>
-  {% endif %}
- </ul> 
+  <h1 class="blog-title">The DjangoBlog</h1>
+  <p class="lead blog-description">this is a django blog</p>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 blog-main">
+      {% for list in articleList  %}
+        <div class="blog-post"> 
+          <h2 class="blog-post-title">{{list.title}}</h1>
+          <p class="blog-post-meta">Time:{{list.publish_time|date:'Y-m-d H:i:s'}}</p>
+          <p class="blog-content">{{list.content|slice:"50"}} </p> 
+          <p><a class="btn btn-primary" href="{% url 'article' list.id%}">阅读全文</a></p>
+        </div>
+      {% endfor %}
+      <div>
+	     <ul class="pager">
+        {% if articleList.has_previous %}
+          <li><a href="?page={{articleList.previous_page_number}}">上一页</a></li>
+        {% endif %}
+
+        {% for pageNum in numPages %}
+          <li> <a href="?page={{pageNum}}">{{pageNum}}</a></li>
+        {% endfor %}
+
+        {% if articleList.has_next %}
+          <li><a href="?page={{articleList.next_page_number}}">下一页</a></li>
+        {% endif %}
+       </ul> 
+      </div>
+    </div>
+
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+      <div class="sidebar-module sidebar-module-inset">
+        <h4>关于</h4>
+        <p>about info</p>
+        <p>about info</P>
+      </div>
+      <div class="sidebar-module">
+        <h4>文章存档</h4>
+          <ol class="list-unstyled">
+            <li><a href="#">month</a></li>
+            <li><a href="#">month</a></li>
+          </ol>
+      </div>
+      <div class="sidebar-module">
+        <h4>友情链接</h4>
+          <ol class="list-unstyled">
+            <li><a href="https://github.com">GitHub</li>
+            <li><a href="https://www.baidu.com">Baidu</li>
+          </ol>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-<div class="col-sm-3 sidebar-module">
- <div>
-  <h4>关于</h4>
-  <p>about info</p>
-  <p>about info</P>
- </div>
 
 {% endblock %}
