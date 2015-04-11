@@ -6,5 +6,8 @@ class Article(models.Model):
  publish_time = models.DateTimeField(auto_now_add=True)
  content = models.TextField()
 
+ class Meta:
+ 	ordering = ['-publish_time']
+
  def __unicode__(self):
   return self.title
