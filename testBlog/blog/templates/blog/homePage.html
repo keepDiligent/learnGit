@@ -42,8 +42,10 @@
       <div class="sidebar-module">
         <h4>文章存档</h4>
           <ol class="list-unstyled">
-            <li><a href="#">month</a></li>
-            <li><a href="#">month</a></li>
+            {% for archive in archives %}
+              <li><a href="{% url 'article_archive_month' archive.year archive.month %}">{{archive.year}}年{{archive.month}}月{{archive.id__count}}篇</a>
+              </li>
+            {% endfor %}
           </ol>
       </div>
       <div class="sidebar-module">

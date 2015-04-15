@@ -4,6 +4,7 @@ from blog.models import Article
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from django.http import Http404
 from django.views.generic.dates import MonthArchiveView
+from django.db.models import Count
 
 
 # Create your views here.
@@ -23,8 +24,15 @@ def homePage(request):
  except EmptyPage:
   articleList=paginator.page(numPages)
 
+ archives = Article.objects.all().extra(select={'year':"strftime('%Y',publish_time)",'month':"strftime('%m',publish_time)"}).values('year','month').annotate(Count('id')).order_by('-year','-month')
+ context={
+      'articleList':articleList,
+      'numPages':numPages,
+      'archives':archives,
+ }
 
- return render(request,'blog/homePage.html',{'articleList':articleList,'numPages':numPages})
+
+ return render(request,'blog/homePage.html',context)
 
 
 def articleList(request):
